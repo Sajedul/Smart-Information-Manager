@@ -31,7 +31,7 @@ public class ImageServiceImpl implements ImageService{
 
         try {
         	
-        	//contactImage.getInputStream().available()
+        	
         	//gives the size of the image in bytes, and the read(data) method reads the bytes into the data array
             byte[] data = new byte[contactImage.getInputStream().available()];
             contactImage.getInputStream().read(data);

@@ -44,7 +44,7 @@ function getTheme() {
 
 //change current page theme
 function changePageTheme(theme, oldTheme) {
-  //localstorage mein update karenge
+  // update theam in local storage
   setTheme(currentTheme);
   //remove the current theme
 
