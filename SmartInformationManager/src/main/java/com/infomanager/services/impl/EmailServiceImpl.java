@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService{
 
 	    @Override
 	    public void sendEmailWithHtml() {
-	        
+	    	
 	        throw new UnsupportedOperationException("Unimplemented method 'sendEmailWithHtml'");
 	    }
 

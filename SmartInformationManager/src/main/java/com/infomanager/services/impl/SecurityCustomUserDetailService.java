@@ -19,7 +19,6 @@ public class SecurityCustomUserDetailService implements UserDetailsService {
 		// Load user
         return userRepo.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email : " + username));
-
 	}
 
 }
