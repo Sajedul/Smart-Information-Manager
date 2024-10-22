@@ -15,7 +15,7 @@ import com.infomanager.services.impl.SecurityCustomUserDetailService;
 public class SecurityConfig {
 	
 	
-	 // user create and login using java code with in memory service
+	 //  create user and login using  in memory service
 
     // @Bean
     // public UserDetailsService userDetailsService() {
@@ -49,22 +49,28 @@ public class SecurityConfig {
     @Autowired
     private AuthFailtureHandler authFailtureHandler;
 
-    // configuraiton of authentication provider for spring security
+    // configuraiton of authentication provider 
+    
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        // user detail service for object:
+        // user detail service for object
         daoAuthenticationProvider.setUserDetailsService(userDetailService);
         // password encoder for object
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
 
         return daoAuthenticationProvider;
     }
-
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
+ // configuration
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        // configuration
         httpSecurity.authorizeHttpRequests(authorize -> {
             // authorize.requestMatchers("/home", "/register", "/services").permitAll();
             authorize.requestMatchers("/user/**").authenticated();
@@ -78,8 +84,10 @@ public class SecurityConfig {
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
             formLogin.successForwardUrl("/user/profile");
+            
             // formLogin.failureForwardUrl("/login?error=true");
             // formLogin.defaultSuccessUrl("/home");
+            
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
 
@@ -113,7 +121,8 @@ public class SecurityConfig {
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
-        // oauth configurations
+        
+        // Oauth2 configurations
 
         httpSecurity.oauth2Login(oauth -> {
             oauth.loginPage("/login");
@@ -129,9 +138,6 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   
 	
 }

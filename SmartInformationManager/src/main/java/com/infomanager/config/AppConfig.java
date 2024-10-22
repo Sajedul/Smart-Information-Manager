@@ -19,6 +19,7 @@ public class AppConfig {
 	
 	//The method returns a Cloudinary object that can be injected into other parts of the application.
 	//Cloudinary object using configuration parameters such as cloud_name, api_key, and api_secret. 
+	
 	//These are the credentials required to authenticate with the Cloudinary API
 	@Bean
 	public Cloudinary cloudinary() {

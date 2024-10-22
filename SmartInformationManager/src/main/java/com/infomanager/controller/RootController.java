@@ -18,22 +18,20 @@ public class RootController {
 	@Autowired
 	private UserService userService;
 
-	 @ModelAttribute
-	    public void addLoggedInUserInformation(Model model, Authentication authentication) {
-	    	
-		 if(authentication==null) {
-			 return ;
-		 }
-	    	String username=Helper.getEmailOfLoggedInUser(authentication);
-	    	logger.info("User Logged in:{}", username);
-	    	
-	    	//fetch data form database
-	    	
-	    	User user = userService.getUserByEmail(username);
-	    	
-	    	System.out.println(user.getName());
-	    	System.out.println(user.getEmail());
-	    	
-	    	model.addAttribute("loggedInUser", user);
+	@ModelAttribute
+	public void addLoggedInUserInformation(Model model, Authentication authentication) {
+
+		if (authentication == null) {
+			return;
 		}
+		String username = Helper.getEmailOfLoggedInUser(authentication);
+		logger.info("User Logged in:{}", username);
+
+		// fetch data form database
+
+		User user = userService.getUserByEmail(username);
+		System.out.println(user.getName());
+		System.out.println(user.getEmail());
+		model.addAttribute("loggedInUser", user);
+	}
 }

@@ -20,6 +20,7 @@ public class ContactServiceImpl implements ContactService {
 
 	@Autowired
 	private ContactRepo contactRepo;
+	
 	@Override
 	public Contact save(Contact contact) {
 		String contactId = UUID.randomUUID().toString();

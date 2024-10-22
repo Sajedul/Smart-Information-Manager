@@ -6,15 +6,17 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public class Helper {
 	
+	//get Email Of Logged In User
+	
 	public static String getEmailOfLoggedInUser(Authentication authentication) {
 		
 		//Principal principal = (Principal)authentication.getPrincipal();
 		 // How we can extract attributes if user login with email and password
+		
 		if (authentication instanceof OAuth2AuthenticationToken) {
 
             var aOAuth2AuthenticationToken = (OAuth2AuthenticationToken) authentication;
             var clientId = aOAuth2AuthenticationToken.getAuthorizedClientRegistrationId();
-
             var oauth2User = (OAuth2User) authentication.getPrincipal();
             String username = "";
 
@@ -31,8 +33,6 @@ public class Helper {
                 username = oauth2User.getAttribute("email") != null ? oauth2User.getAttribute("email").toString()
                         : oauth2User.getAttribute("login").toString() + "@gmail.com";
             }
-
-            // sign with facebook
             return username;
 
         } else {
@@ -41,13 +41,14 @@ public class Helper {
         }
 
     }
+	
+	//get Link For Email Verification
 
     public static String getLinkForEmailVerificatiton(String emailToken) {
 
         String link = "http://localhost:8080/auth/verify-email?token=" + emailToken;
 
         return link;
-
     }
 
 }

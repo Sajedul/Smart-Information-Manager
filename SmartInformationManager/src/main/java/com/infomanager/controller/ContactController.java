@@ -1,8 +1,6 @@
 package com.infomanager.controller;
 
 
-import java.awt.Image;
-import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -64,8 +62,6 @@ public class ContactController {
 		
 		 // process the form data
 
-        // 1 validate form
-
         if (result.hasErrors()) {
 
             result.getAllErrors().forEach(error -> logger.info(error.toString()));
@@ -81,11 +77,10 @@ public class ContactController {
         // form ---> contact
 
         User user = userService.getUserByEmail(username);
-        // 2 process the contact picture
+        
+        //  process the contact picture
 
-        // image process
-
-        // code
+        //  process image
         Contact contact = new Contact();
         contact.setName(contactForm.getName());
         contact.setFavorite(contactForm.isFavorite());
@@ -108,7 +103,6 @@ public class ContactController {
         System.out.println(contactForm);
 
         // set the contact picture url
-
         // set message to be displayed on the view
 
         session.setAttribute("message",
@@ -131,15 +125,12 @@ public class ContactController {
             Authentication authentication) {
 
         // load all the user contacts
+    	
         String username = Helper.getEmailOfLoggedInUser(authentication);
-
         User user = userService.getUserByEmail(username);
-
         Page<Contact> pageContact = contactService.getByUser(user, page, size, sortBy, direction);
-
         model.addAttribute("pageContact", pageContact);
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
-
         model.addAttribute("contactSearchForm", new ContactSearchForm());
 
         return "user/contacts";
@@ -213,7 +204,7 @@ public class ContactController {
         contactForm.setWebsiteLink(contact.getWebsiteLink());
         contactForm.setLinkedInLink(contact.getLinkedInLink());
         contactForm.setPicture(contact.getPicture());
-        ;
+     
         model.addAttribute("contactForm", contactForm);
         model.addAttribute("contactId", contactId);
 

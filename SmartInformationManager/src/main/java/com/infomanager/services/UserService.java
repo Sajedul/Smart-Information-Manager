@@ -8,7 +8,7 @@ import com.infomanager.entities.User;
 public interface UserService {
 	
 	User saveUser(User user);
-
+	
     Optional<User> getUserById(String id);
 
     Optional<User> updateUser(User user);
@@ -22,8 +22,5 @@ public interface UserService {
     List<User> getAllUsers();
 
     User getUserByEmail(String email);
-
-    // add more methods here related user service or logic
-
 
 }

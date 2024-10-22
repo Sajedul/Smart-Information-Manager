@@ -15,8 +15,4 @@ public class Message {
 
 	    private String content;
 	    private MessageType type;
-
-	    // Getters and setters will auto generate by lombok dependency.
-	    
-
 }

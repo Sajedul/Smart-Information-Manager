@@ -37,11 +37,9 @@ public class Contact {
     private String linkedInLink;
     // private List<String> socialLinks=new ArrayList<>();
     private String cloudinaryImagePublicId;
-
     @ManyToOne
     @JsonIgnore
     private User user;
-
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<SocialLink> links = new ArrayList<>();
 

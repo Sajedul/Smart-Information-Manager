@@ -22,8 +22,10 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    //insted of calling this method from controller we can call it from root controller that will 
+    //Insted of calling this method from controller we can call it from root controller that will 
     //allow us to show this message in every other pages
+    
+    
 	/*
 	 * @ModelAttribute public void addLoggedInUserInformation(Model model,
 	 * Authentication authentication) {
@@ -39,7 +41,9 @@ public class UserController {
 	 * 
 	 * model.addAttribute("loggedInUser", user); }
 	 */
-    // user dashbaord page
+       
+    
+    // user dashboard
 
     @RequestMapping(value = "/dashboard")
     public String userDashboard() {
